@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏛️ The Nexus Tech Stack (The Arsenal)
 
-## Getting Started
+A purely dynamic, ultra-premium SVG generator for your GitHub profile. "The Arsenal" displays your tech stack on levitating quartz pedestals inside a heavy, animated glass vault.
 
-First, run the development server:
+<div align="center">
+  <img src="https://your-project-name.vercel.app/api?skills=html5,css3,javascript,typescript,react,nextdotjs,nodedotjs,python,mysql,mongodb,git,docker,figma&theme=royal" alt="The Arsenal Preview" />
+</div>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+*(Note: Replace `your-project-name.vercel.app` with your actual deployed Vercel URL!)*
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Masterpiece Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Cinematic Lighting:** Features a top-down spotlight and a glowing, traveling light beam that endlessly traces the inner border of the card.
+* **Levitating Quartz Pedestals:** Icons float smoothly inside 3D glass display cases with dynamic underglows.
+* **The Dot Matrix:** A faint, premium perforated background texture.
+* **Zero Configuration:** No GitHub token required. The engine automatically fetches the official, mathematically perfect vector paths for your tools directly from `simple-icons`.
+* **Auto-Scaling Geometry:** The card automatically shrinks or expands its height perfectly based on how many skills you add.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🎨 The 5 Premium Themes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Switch the aesthetic of your vault instantly by appending `&theme=theme_name` to your URL.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Theme Name | Aura | Parameter |
+| :--- | :--- | :--- |
+| **Royal** | Obsidian & Champagne Gold | `&theme=royal` |
+| **Midnight** | Deep Space & Neon Cyan | `&theme=midnight` |
+| **Crimson** | Dark Ruby & Blood Red | `&theme=crimson` |
+| **Emerald** | The Matrix & Mint Green | `&theme=emerald` |
+| **Amethyst** | The Void & Deep Purple | `&theme=amethyst` |
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 How to Embed on Your Profile
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Once deployed to Vercel, simply add this markdown to your GitHub profile's `README.md`:
+
+```md
+<div align="center">
+  <img src="[https://your-project-name.vercel.app/api?skills=react,nextdotjs,typescript,nodedotjs,python,docker,mysql,git&theme=midnight](https://your-project-name.vercel.app/api?skills=react,nextdotjs,typescript,nodedotjs,python,docker,mysql,git&theme=midnight)" alt="My Tech Stack" />
+</div>
