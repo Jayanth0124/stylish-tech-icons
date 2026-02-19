@@ -3,19 +3,20 @@ import { themes } from '../themes';
 export function generateStackSvg(skills, iconPaths, themeName = 'royal') {
   const theme = themes[themeName] || themes.royal;
   
-  // 📏 DECREASED OVERALL CARD SIZE (Tighter & More Compact)
+  // 📏 PERFECTED PADDINGS (Gives the icons beautiful breathing room)
   const cols = 8; 
   const itemWidth = 68;  
   const itemHeight = 85; 
-  const gapX = 12;       
+  const gapX = 14;       // Increased gap slightly to prevent horizontal crowding
   const gapY = 18;       
-  const graphWidth = 670; // Shrunk from 700px to frame the icons tightly
-  const startY = 95;      // Moved the grid up to reduce wasted top space
+  const graphWidth = 740; // Widened to create perfect 30px padding inside the border
+  const startY = 110;     // Shifted down to clear the header area
 
   const rows = Math.ceil(skills.length / cols);
-  const graphHeight = startY + (rows * itemHeight) + ((rows > 0 ? rows - 1 : 0) * gapY) + 26; // Reduced bottom padding
+  // Calculates exact height so the bottom padding perfectly matches the side paddings
+  const graphHeight = startY + (rows * itemHeight) + ((rows > 0 ? rows - 1 : 0) * gapY) + 50; 
 
-  // 🛡️ UNTOUCHED ICON CONTAINERS (Exactly as you requested)
+  // 🛡️ UNTOUCHED ICON CONTAINERS
   const generateGrid = () => {
     return skills.map((skill, index) => {
       const slug = skill.trim().toLowerCase();
@@ -57,6 +58,14 @@ export function generateStackSvg(skills, iconPaths, themeName = 'royal') {
   return `
     <svg width="${graphWidth}" height="${graphHeight}" viewBox="0 0 ${graphWidth} ${graphHeight}" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
+        <clipPath id="inner-glow-clip">
+          <rect x="20" y="20" width="${graphWidth - 40}" height="${graphHeight - 40}" rx="12" />
+        </clipPath>
+
+        <clipPath id="card-clip">
+          <rect width="${graphWidth}" height="${graphHeight}" rx="18" />
+        </clipPath>
+
         <radialGradient id="bg-grad" cx="50%" cy="0%" r="140%">
           <stop offset="0%" stop-color="${theme.bgStart}"/>
           <stop offset="100%" stop-color="${theme.bgEnd}"/>
@@ -94,28 +103,36 @@ export function generateStackSvg(skills, iconPaths, themeName = 'royal') {
           100% { transform: translateY(0px); }
         }
 
-        /* ✨ NEW: ANIMATION FOR THE BORDER SHINE ✨ */
         @keyframes border-travel {
           0% { stroke-dashoffset: 3000; }
           100% { stroke-dashoffset: 0; }
         }
       </style>
 
-      <rect width="${graphWidth}" height="${graphHeight}" rx="18" fill="url(#bg-grad)" stroke="${theme.accent}" stroke-opacity="0.1" stroke-width="1" />
-      <rect width="${graphWidth}" height="${graphHeight}" rx="18" fill="url(#dot-matrix)" />
-
-      <rect x="10" y="10" width="${graphWidth - 20}" height="${graphHeight - 20}" rx="10" fill="none" stroke="${theme.accent}" stroke-width="0.5" stroke-opacity="0.25" />
+      <rect width="${graphWidth}" height="${graphHeight}" rx="18" fill="${theme.bgStart}" stroke="${theme.accent}" stroke-opacity="0.15" stroke-width="1" />
       
-      <rect x="10" y="10" width="${graphWidth - 20}" height="${graphHeight - 20}" rx="10" fill="none" stroke="${theme.accent}" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="120 3000" filter="url(#glow)" style="animation: border-travel 8s linear infinite;" />
+      <g clip-path="url(#card-clip)">
+        <rect width="${graphWidth}" height="${graphHeight}" fill="url(#bg-grad)" />
+        <rect width="${graphWidth}" height="${graphHeight}" fill="url(#dot-matrix)" />
+      </g>
 
-      <ellipse cx="${graphWidth/2}" cy="0" rx="350" ry="50" fill="${theme.accent}" filter="url(#glow)" opacity="0.12"/>
-      <path d="M 100 0 L ${graphWidth - 100} 0" stroke="url(#edge-highlight)" stroke-width="1.5" opacity="0.8"/>
-
-      <circle cx="${graphWidth/2 - 100}" cy="32" r="2.5" fill="${theme.accent}" filter="url(#glow)"/>
-      <circle cx="${graphWidth/2 + 100}" cy="32" r="2.5" fill="${theme.accent}" filter="url(#glow)"/>
+      <rect x="20" y="20" width="${graphWidth - 40}" height="${graphHeight - 40}" rx="12" fill="none" stroke="${theme.accent}" stroke-width="0.5" stroke-opacity="0.3" />
       
-      <text x="${graphWidth/2}" y="35" text-anchor="middle" class="accent-text" font-size="9" letter-spacing="6">SYSTEM ARCHITECTURE</text>
-      <text x="${graphWidth/2}" y="65" text-anchor="middle" class="serif-text" font-size="26">The Arsenal</text>
+      <g clip-path="url(#inner-glow-clip)">
+        <rect x="20" y="20" width="${graphWidth - 40}" height="${graphHeight - 40}" rx="12" fill="none" stroke="${theme.accent}" stroke-width="2" stroke-linecap="round" stroke-dasharray="120 3000" filter="url(#glow)" style="animation: border-travel 8s linear infinite;" />
+        
+        <ellipse cx="${graphWidth/2}" cy="20" rx="350" ry="50" fill="${theme.accent}" filter="url(#glow)" opacity="0.12"/>
+      </g>
+
+      <path d="M 100 20 L ${graphWidth - 100} 20" stroke="url(#edge-highlight)" stroke-width="1.5" opacity="0.8"/>
+
+      <circle cx="${graphWidth/2 - 120}" cy="42" r="8" fill="${theme.accent}" opacity="0.15"/>
+      <circle cx="${graphWidth/2 - 120}" cy="42" r="2.5" fill="${theme.accent}"/>
+      <circle cx="${graphWidth/2 + 120}" cy="42" r="8" fill="${theme.accent}" opacity="0.15"/>
+      <circle cx="${graphWidth/2 + 120}" cy="42" r="2.5" fill="${theme.accent}"/>
+      
+      <text x="${graphWidth/2}" y="45" text-anchor="middle" class="accent-text" font-size="9" letter-spacing="6">SYSTEM ARCHITECTURE</text>
+      <text x="${graphWidth/2}" y="76" text-anchor="middle" class="serif-text" font-size="26">The Arsenal</text>
 
       ${generateGrid()}
     </svg>
